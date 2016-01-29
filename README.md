@@ -1,2 +1,0 @@
-# baekjoon
-java_algorithm
