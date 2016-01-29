@@ -23,6 +23,7 @@ public class T2004___Count0inCombination {
 			else break;
 		}
 		System.out.println(count);
+		sc.close();
 	}
 
 	public static void main(String[] args) {
