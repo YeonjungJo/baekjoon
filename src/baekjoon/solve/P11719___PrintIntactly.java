@@ -1,14 +1,13 @@
+package baekjoon.solve;
 import java.util.Scanner;
 
-public class Main {
+public class P11719___PrintIntactly {
 
 	private static final Scanner sc = new Scanner(System.in);
 
-	private void solve() {
-		sc.close();
-	}
-
 	public static void main(String[] args) {
-		new Main().solve();
+		while (sc.hasNextLine()) {
+			System.out.println(sc.nextLine());
+		}
 	}
 }
