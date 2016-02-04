@@ -1,17 +1,15 @@
 import java.util.Scanner;
 
 public class Main {
+
 	private static final Scanner sc = new Scanner(System.in);
 
-	private static final String REGEX = "[a-zA-Z|-]+";
-
 	private void solve() {
-		int max = 0;
-		String word = "";
-		while (true) {
-			String tmp = sc.next();
-			tmp.replaceFirst(REGEX, "");
-			if (tmp.equals("E-N-D")) break;
+		String n = sc.next();
+		int k = sc.nextInt();
+
+		for (int i = n.length() - 1; i >= 0; i--) {
+
 		}
 	}
 
