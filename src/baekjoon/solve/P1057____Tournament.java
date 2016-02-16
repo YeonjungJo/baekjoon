@@ -6,7 +6,7 @@ public class P1057____Tournament {
 	private static final Scanner sc = new Scanner(System.in);
 
 	private void solve() {
-		int t = sc.nextInt();
+		sc.nextInt();
 		int k = sc.nextInt() - 1;
 		int l = sc.nextInt() - 1;
 
