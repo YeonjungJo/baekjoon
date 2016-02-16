@@ -5,10 +5,16 @@ public class Main {
 	private static final Scanner sc = new Scanner(System.in);
 
 	private void solve() {
-		int n = sc.nextInt() * sc.nextInt();
-
-		for (int i = 0; i < 5; i++)
-			System.out.print((sc.nextInt() - n) + " ");
+		int point = 0;
+		for (int i = 0; i < 10; i++) {
+			int tmp = sc.nextInt();
+			if (Math.abs(point - 100) <= Math.abs(point + tmp - 100)) {
+				System.out.println(point);
+				return;
+			} else {
+				point += tmp;
+			}
+		}
 	}
 
 	public static void main(String[] args) {
