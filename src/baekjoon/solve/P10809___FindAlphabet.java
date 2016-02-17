@@ -1,4 +1,5 @@
 package baekjoon.solve;
+
 import java.util.Scanner;
 
 public class P10809___FindAlphabet {
