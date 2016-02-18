@@ -1,0 +1,11 @@
+
+public class Test {
+	
+	private static final String LARGE_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	
+	public static void main(String[] args) {
+		String a = "0000000000000000000000000000000000000000000000000000000000000000000000000005527147875260444560247265192192255725514240233239220";
+		System.out.println(a.length());
+	}
+
+}
