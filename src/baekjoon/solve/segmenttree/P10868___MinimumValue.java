@@ -1,7 +1,7 @@
-
+package baekjoon.solve.segmenttree;
 import java.util.Scanner;
 
-public class Main {
+public class P10868___MinimumValue {
 
 	private static final Scanner sc = new Scanner(System.in);
 
@@ -67,6 +67,6 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		new Main().solve();
+		new P10868___MinimumValue().solve();
 	}
 }
