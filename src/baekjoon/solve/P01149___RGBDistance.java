@@ -1,4 +1,4 @@
-package baekjoon.solve.dp;
+package baekjoon.solve;
 import java.util.Scanner;
 
 public class P01149___RGBDistance {

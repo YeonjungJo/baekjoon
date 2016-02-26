@@ -1,4 +1,4 @@
-package baekjoon.solve.segmenttree;
+package baekjoon.solve.basic;
 import java.util.Scanner;
 
 public class ___________STD_SegmentTree {

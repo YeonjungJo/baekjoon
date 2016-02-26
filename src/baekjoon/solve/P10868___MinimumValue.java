@@ -1,4 +1,4 @@
-package baekjoon.solve.segmenttree;
+package baekjoon.solve;
 import java.util.Scanner;
 
 public class P10868___MinimumValue {
