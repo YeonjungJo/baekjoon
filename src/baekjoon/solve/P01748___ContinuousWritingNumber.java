@@ -1,7 +1,7 @@
 package baekjoon.solve;
 import java.util.Scanner;
 
-public class P01748____ContinuousWritingNumber {
+public class P01748___ContinuousWritingNumber {
 
 	private static final Scanner sc = new Scanner(System.in);
 
@@ -16,6 +16,6 @@ public class P01748____ContinuousWritingNumber {
 	}
 
 	public static void main(String[] args) {
-		new P01748____ContinuousWritingNumber().solve();
+		new P01748___ContinuousWritingNumber().solve();
 	}
 }
