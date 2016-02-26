@@ -1,7 +1,7 @@
 package baekjoon.solve.basic;
 import java.util.Scanner;
 
-public class ___________STD_SegmentTree {
+public class SegmentTree {
 
 	private static final Scanner sc = new Scanner(System.in);
 
@@ -38,6 +38,6 @@ public class ___________STD_SegmentTree {
 	}
 
 	public static void main(String[] args) {
-		new ___________STD_SegmentTree().solve();
+		new SegmentTree().solve();
 	}
 }
