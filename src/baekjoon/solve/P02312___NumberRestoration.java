@@ -1,7 +1,7 @@
 package baekjoon.solve;
 import java.util.Scanner;
 
-public class P2312___NumberRestoration {
+public class P02312___NumberRestoration {
 
 	private static final Scanner sc = new Scanner(System.in);
 
@@ -28,6 +28,6 @@ public class P2312___NumberRestoration {
 	}
 
 	public static void main(String[] args) {
-		new P2312___NumberRestoration().solve();
+		new P02312___NumberRestoration().solve();
 	}
 }
