@@ -1,3 +1,4 @@
+package baekjoon.solve;
 import java.util.Scanner;
 
 public class P04613___QuickSum {
