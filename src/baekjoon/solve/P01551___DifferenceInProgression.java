@@ -6,7 +6,7 @@ public class P01551___DifferenceInProgression {
 	private static final Scanner sc = new Scanner(System.in);
 
 	private void solve() {
-		int n = sc.nextInt();
+		sc.nextInt();
 		int m = sc.nextInt();
 		String[] a = sc.next().split(",");
 
