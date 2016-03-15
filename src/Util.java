@@ -1,7 +1,7 @@
 
 public class Util {
 
-	private static final String LARGE_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private static final String UPPERCASE_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	private static final String LOWERCASE_ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 
 	private static final String SPECIAL_SYMBOL = "[(|)|{|}|[|]|.|,|;|:]";

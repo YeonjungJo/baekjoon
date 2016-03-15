@@ -6,7 +6,7 @@ public class P08595___HiddenNumber {
 	private static final Scanner sc = new Scanner(System.in);
 
 	private void solve() {
-		int n = sc.nextInt();
+		sc.nextInt();
 		String[] s = sc.next().split("[a-zA-Z]+");
 		long result = 0;
 		for (int i = 0; i < s.length; i++) {
