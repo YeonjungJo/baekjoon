@@ -1,4 +1,5 @@
 package baekjoon.todo;
+
 import java.util.Scanner;
 
 public class T02812___MakeBigger {
@@ -11,7 +12,7 @@ public class T02812___MakeBigger {
 	private static final Scanner sc = new Scanner(System.in);
 
 	private void solve() {
-		int n = sc.nextInt();
+		sc.nextInt();
 		int k = sc.nextInt();
 		String s = sc.next();
 
