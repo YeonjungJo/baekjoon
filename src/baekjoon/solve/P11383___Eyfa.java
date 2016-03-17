@@ -1,4 +1,5 @@
 package baekjoon.solve;
+
 import java.util.Scanner;
 
 public class P11383___Eyfa {
@@ -7,7 +8,7 @@ public class P11383___Eyfa {
 
 	private void solve() {
 		int n = sc.nextInt();
-		int m = sc.nextInt();
+		sc.nextInt();
 		String[] original = new String[n];
 		for (int i = 0; i < n; i++) {
 			original[i] = sc.next();

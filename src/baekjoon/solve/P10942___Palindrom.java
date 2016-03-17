@@ -1,7 +1,7 @@
-package baekjoon.todo;
+package baekjoon.solve;
 import java.util.Scanner;
 
-public class T10942___Palindrom {
+public class P10942___Palindrom {
 
 	private static final Scanner sc = new Scanner(System.in);
 
@@ -10,24 +10,20 @@ public class T10942___Palindrom {
 		String[] s = sc.nextLine().split(" ");
 		int m = sc.nextInt();
 		for (int i = 0; i < m; i++) {
-			int start = sc.nextInt();
-			int end = sc.nextInt();
+			int start = sc.nextInt() - 1;
+			int end = sc.nextInt() - 1;
 			System.out.println(palindrom(s, start, end) ? 1 : 0);
 		}
 	}
 
 	private boolean palindrom(String[] s, int start, int end) {
-		StringBuilder strBuilder = new StringBuilder();
-		for (int i = start - 1; i < end; i++) {
-			strBuilder.append(s[i]);
-		}
-		for (int i = 0; i < strBuilder.length(); i++) {
-			if (strBuilder.charAt(i) != strBuilder.charAt(strBuilder.length() - i - 1)) return false;
+		for (int i = 0; i <= (end - start) / 2; i++) {
+			if (!s[start + i].equals(s[end - i])) return false;
 		}
 		return true;
 	}
 
 	public static void main(String[] args) {
-		new T10942___Palindrom().solve();
+		new P10942___Palindrom().solve();
 	}
 }

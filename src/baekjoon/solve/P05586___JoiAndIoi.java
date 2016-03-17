@@ -1,3 +1,4 @@
+package baekjoon.solve;
 import java.util.Scanner;
 
 public class P05586___JoiAndIoi {
