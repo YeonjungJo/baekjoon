@@ -1,4 +1,5 @@
 package baekjoon.solve;
+
 import java.util.Scanner;
 
 public class P05525___IOIOI {
@@ -7,7 +8,7 @@ public class P05525___IOIOI {
 
 	private void solve() {
 		int n = sc.nextInt();
-		int m = sc.nextInt();
+		sc.nextInt();
 		String s = sc.next();
 
 		int count = 0;
@@ -18,7 +19,8 @@ public class P05525___IOIOI {
 			s = s.replaceFirst("I(OI)+", "A");
 			b = s.length();
 			if ((a - b) / 2 - n + 1 > 0) count += (a - b) / 2 - n + 1;
-//			System.out.printf("%d, %s, %d ( %d ): %d\n", a, s, b, (a - b) / 2 - n, count);
+			// System.out.printf("%d, %s, %d ( %d ): %d\n", a, s, b, (a - b) / 2
+			// - n, count);
 		}
 
 		System.out.println(count);
