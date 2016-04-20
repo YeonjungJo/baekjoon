@@ -7,31 +7,33 @@ public class T09333___PayBackMoney {
 
 	private void solve() {
 		int testcase = sc.nextInt();
-		Loop1: for (int t = 0; t < testcase; t++) {
-			double r = sc.nextDouble() / 100;
+		for (int t = 0; t < testcase; t++) {
+			double r = sc.nextDouble();
 			double b = sc.nextDouble();
 			double m = sc.nextDouble();
-
-			int month = 0;
-			while (b > 0) {
-				if (month >= 1200) {
-					System.out.println("impossible");
-					continue Loop1;
-				}
-				b = b + getIntegerest(r, b) - m;
-				month++;
-			}
-
-			System.out.println(month);
+			search(r, b, m);
 		}
 	}
 
-	private double round(double d, int i) {
-		return Math.round(d * Math.pow(10, i)) / Math.pow(10, i);
+	private void search(double r, double b, double m) {
+		for (int i = 1; i <= 1200; i++) {
+			double tmp = getInterest(b, r) - m;
+			if (tmp >= 0) {
+				System.out.println("impossible");
+				return;
+			}
+			b += tmp;
+			if (b <= 0) {
+				System.out.println(i);
+				return;
+			}
+		}
+		System.out.println("impossible");
 	}
 
-	private double getIntegerest(double r, double b) {
-		return round(r * b, 2);
+	private double getInterest(double b, double r) {
+		double interest = b * r;
+		return Math.round(interest) / 100.0;
 	}
 
 	public static void main(String[] args) {
