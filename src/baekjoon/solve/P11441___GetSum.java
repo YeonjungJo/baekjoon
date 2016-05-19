@@ -1,3 +1,4 @@
+package baekjoon.solve;
 import java.util.Scanner;
 
 public class P11441___GetSum {
