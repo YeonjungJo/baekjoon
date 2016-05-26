@@ -1,4 +1,5 @@
 package baekjoon.solve;
+
 import java.util.Scanner;
 
 public class P10250___ACMHotel {
@@ -9,7 +10,7 @@ public class P10250___ACMHotel {
 		int testcase = sc.nextInt();
 		for (int t = 0; t < testcase; t++) {
 			int h = sc.nextInt();
-			int w = sc.nextInt();
+			sc.nextInt();
 			int n = sc.nextInt();
 
 			int floor = (n % h);
