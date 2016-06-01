@@ -3,42 +3,50 @@ import java.util.Scanner;
 public class Main {
 
 	private static final Scanner sc = new Scanner(System.in);
-	private static final int[][] DIR = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+
+	private static final int SIZE = 25;
 
 	private void solve() {
-		int n = sc.nextInt();
-		int m = sc.nextInt();
-		boolean[][] a = new boolean[n][m];
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				if (sc.nextInt() == 1) a[i][j] = true;
-			}
+
+		int[] fibo = new int[SIZE];
+		fibo[1] = 1;
+		fibo[2] = 2;
+		for (int i = 3; i < fibo.length; i++) {
+			fibo[i] = fibo[i - 1] + fibo[i - 2];
 		}
 
-		int cnt = 0;
-		int max = 0;
+		int testcase = sc.nextInt();
+		for (int t = 0; t < testcase; t++) {
+			int n = sc.nextInt();
 
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				if (a[i][j]) {
-					cnt++;
-					int size = search(a, n, m, i, j);
-					if (size > max) max = size;
-				}
+			boolean[] tmp = new boolean[SIZE];
+			int l = initialize(fibo, tmp, n);
+
+			for (int i = 0; i < SIZE; i++) {
+				System.out.print(tmp[i] + " ");
 			}
+			System.out.println(transformation(fibo, tmp, l));
 		}
-
-		System.out.println(cnt);
-		System.out.println(max);
 	}
 
-	private int search(boolean[][] a, int n, int m, int i, int j) {
-		if (i < 0 || j < 0 || i >= n || j >= m) return 0;
-		int sum = 1;
-		for (int k = 0; k < DIR.length; k++) {
-			
+	private int transformation(int[] fibo, boolean[] tmp, int length) {
+		int mile = 0;
+		for (int i = 1; i < length; i++) {
+			if (tmp[SIZE - i]) mile += fibo[SIZE - i - 1];
 		}
-		return sum;
+		return mile;
+	}
+
+	private int initialize(int[] fibo, boolean[] tmp, int n) {
+		int length = 0;
+		for (int i = SIZE - 1; i >= 0 && n > 0; i--) {
+			if (n >= fibo[i]) {
+				tmp[i] = true;
+				n -= fibo[i];
+				if (length == 0) length = i;
+			}
+		}
+		return length;
 	}
 
 	public static void main(String[] args) {
