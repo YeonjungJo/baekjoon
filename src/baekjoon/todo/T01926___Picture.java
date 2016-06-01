@@ -1,3 +1,4 @@
+package baekjoon.todo;
 import java.util.Scanner;
 
 public class T01926___Picture {

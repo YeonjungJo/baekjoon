@@ -1,55 +1,40 @@
 package baekjoon.todo;
-import java.util.LinkedList;
+
 import java.util.Scanner;
 
 public class T01068___Tree {
 
 	private static final Scanner sc = new Scanner(System.in);
 
+	private static final int ROOT = -1;
+	private static final int REMOVE = -2;
+
 	private void solve() {
 		int n = sc.nextInt();
-
-		Node root = new Node(-1);
-		Node[] tree = new Node[51];
-
+		int[] parent = new int[n];
+		int[] cntChildNode = new int[n];
 		for (int i = 0; i < n; i++) {
-			if (tree[i] == null) tree[i] = new Node(i);
-			int p = sc.nextInt();
-			if (p == -1) root.addChild(tree[i]);
-			else {
-				if (tree[p] == null) tree[p] = new Node(p);
-				tree[p].addChild(tree[i]);
-			}
+			parent[i] = sc.nextInt();
+			if (parent[i] != ROOT) cntChildNode[parent[i]]++;
 		}
 
-		int leafCount = 0;
+		int m = sc.nextInt();
+		free(cntChildNode, parent, n, m);
 
-		int r = sc.nextInt();
-		LinkedList<Node> stack = new LinkedList<>();
-		stack.add(root);
-		while (!stack.isEmpty()) {
-			Node i = stack.pop();
-			if (i.getChild(tree[r]).size() == 0) leafCount++;
-			else stack.addAll(i.getChild(tree[r]));
+		int count = 0;
+		for (int i = 0; i < n; i++) {
+			if (parent[i] != REMOVE && cntChildNode[i] == 0) count++;
 		}
-		System.out.println(leafCount);
+		System.out.println(count);
 	}
 
-	class Node {
-		int id;
-		LinkedList<Node> child = new LinkedList<Node>();
+	private void free(int[] cntChildNode, int[] parent, int n, int m) {
+		if (parent[m] < 0) return;
 
-		public Node(int id) {
-			this.id = id;
-		}
-
-		public void addChild(Node node) {
-			child.add(node);
-		}
-
-		public LinkedList<Node> getChild(Node r) {
-			child.remove(r);
-			return child;
+		cntChildNode[parent[m]]--;
+		parent[m] = REMOVE;
+		for (int i = 0; i < n; i++) {
+			if (parent[i] == m) free(cntChildNode, parent, n, i);
 		}
 	}
 

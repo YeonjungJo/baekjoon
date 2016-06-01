@@ -1,18 +1,18 @@
+package baekjoon.solve;
 import java.util.Scanner;
 
-public class Main {
+public class P06504___KilometerToMile {
 
 	private static final Scanner sc = new Scanner(System.in);
 
 	private static final int SIZE = 25;
 
 	private void solve() {
-
 		int[] fibo = new int[SIZE];
-		fibo[1] = 1;
-		fibo[2] = 2;
-		for (int i = 3; i < fibo.length; i++) {
-			fibo[i] = fibo[i - 1] + fibo[i - 2];
+		fibo[SIZE - 2] = 1;
+		fibo[SIZE - 3] = 2;
+		for (int i = SIZE - 4; i >= 0; i--) {
+			fibo[i] = fibo[i + 1] + fibo[i + 2];
 		}
 
 		int testcase = sc.nextInt();
@@ -20,26 +20,23 @@ public class Main {
 			int n = sc.nextInt();
 
 			boolean[] tmp = new boolean[SIZE];
-			int l = initialize(fibo, tmp, n);
-
-			for (int i = 0; i < SIZE; i++) {
-				System.out.print(tmp[i] + " ");
-			}
-			System.out.println(transformation(fibo, tmp, l));
+			initialize(fibo, tmp, n);
+			int mile = transformation(fibo, tmp);
+			System.out.println(mile);
 		}
 	}
 
-	private int transformation(int[] fibo, boolean[] tmp, int length) {
+	private int transformation(int[] fibo, boolean[] tmp) {
 		int mile = 0;
-		for (int i = 1; i < length; i++) {
-			if (tmp[SIZE - i]) mile += fibo[SIZE - i - 1];
+		for (int i = 0; i < SIZE - 2; i++) {
+			if (tmp[i]) mile += fibo[i + 1];
 		}
 		return mile;
 	}
 
 	private int initialize(int[] fibo, boolean[] tmp, int n) {
 		int length = 0;
-		for (int i = SIZE - 1; i >= 0 && n > 0; i--) {
+		for (int i = 0; i < SIZE - 1 && n > 0; i++) {
 			if (n >= fibo[i]) {
 				tmp[i] = true;
 				n -= fibo[i];
@@ -50,6 +47,6 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		new Main().solve();
+		new P06504___KilometerToMile().solve();
 	}
 }
