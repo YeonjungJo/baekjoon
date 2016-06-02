@@ -1,4 +1,5 @@
 package baekjoon.solve;
+
 import java.util.Scanner;
 
 public class P01969___DNA {
@@ -31,7 +32,7 @@ public class P01969___DNA {
 			strBuilder.append(tmp);
 			hammingDistance += n - max;
 		}
-		
+
 		System.out.println(strBuilder.toString());
 		System.out.println(hammingDistance);
 	}
@@ -44,13 +45,6 @@ public class P01969___DNA {
 			}
 		}
 		return nucleotide;
-	}
-
-	private int max(int i, int j, int k, int l) {
-		if (i >= j && i >= k && i >= l) return i;
-		if (j >= i && j >= k && j >= l) return i;
-		if (k >= i && k >= j && k >= l) return i;
-		return l;
 	}
 
 	public static void main(String[] args) {
