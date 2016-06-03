@@ -1,4 +1,4 @@
-package baekjoon.solve;
+package baekjoon.todo;
 import java.util.Scanner;
 
 public class T02290___LCDTest {
