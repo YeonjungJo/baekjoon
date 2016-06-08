@@ -4,40 +4,46 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
  
-public class T11060___Jump {
+public class T01717___SetExpression {
  
-    private static final int NOT_AVAILABLE = -1;
-    private static final int MAX_VALUE = 1001;
-    private static final int ARRIVE = 0;
+    private static final int MERGE = 0;
+    private static final int CHECK = 1;
  
     private void solve() {
         int n = sc.nextInt();
-        int[] a = new int[n];
-        for (int i = 0; i < n; i++) {
-            a[i] = sc.nextInt();
+        int m = sc.nextInt();
+ 
+        int[] a = new int[n + 1];
+        for (int i = 0; i <= n; i++) {
+            a[i] = i;
         }
  
-        int[] d = new int[n];
- 
-        search(d, a, n, 0, 0);
-        System.out.println(d[0]);
-    }
- 
-    private int search(int[] d, int[] a, int n, int p, int cost) {
-        if (d[p] != 0 && d[p] <= cost - 1) return d[p];
-        if (p == n - 1) return ARRIVE;
-        int min = MAX_VALUE;
-        for (int i = 1; i <= a[p] && p + i < n; i++) {
-            search(d, a, n, p + i, cost + 1);
-            if (d[p + i] == 0) return d[p] = 1;
-            if (d[p + i] != -1 && min > d[p + i]) min = d[p + i];
+        for (int i = 0; i < m; i++) {
+            switch (sc.nextInt()) {
+            case MERGE:
+                merge(a, n, sc.nextInt(), sc.nextInt());
+                break;
+            case CHECK:
+                check(a, sc.nextInt(), sc.nextInt());
+                break;
+            }
         }
-        if (min == MAX_VALUE) return d[p] = NOT_AVAILABLE;
-        return d[p] = min + 1;
     }
+ 
+    private void check(int[] a, int i, int j) {
+        System.out.println(a[i] == a[j] ? "YES" : "NO");
+    }
+ 
+    private void merge(int[] a, int n, int i, int j) {
+        if (a[i] == a[j]) return;
+        for (int k = 0; k <= n; k++) {
+            if (a[k] == a[j]) a[k] = a[i];
+        }
+    }
+ 
     public static void main(String[] args) {
         sc.init();
-        new T11060___Jump().solve();
+        new T01717___SetExpression().solve();
     }
  
     static class sc {
