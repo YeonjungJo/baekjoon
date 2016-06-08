@@ -4,9 +4,7 @@ public class Main {
 
 	private static final Scanner sc = new Scanner(System.in);
 
-	private void solve() {
-		String s = "111111111111111111111";
-	}
+	private void solve() {}
 
 	public static void main(String[] args) {
 		new Main().solve();
