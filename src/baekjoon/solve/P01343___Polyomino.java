@@ -1,7 +1,7 @@
 package baekjoon.solve;
 import java.util.Scanner;
 
-public class P01343____Polyomino {
+public class P01343___Polyomino {
 
 	private static final Scanner sc = new Scanner(System.in);
 
@@ -40,6 +40,6 @@ public class P01343____Polyomino {
 	}
 
 	public static void main(String[] args) {
-		new P01343____Polyomino().solve();
+		new P01343___Polyomino().solve();
 	}
 }

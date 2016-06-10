@@ -1,7 +1,15 @@
 package baekjoon.todo;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Scanner;
 
 public class T04320___PerfectSquareNumber {
+
+	/*
+	 * Double로 계산하면 부동소수점때문에 125 --> 3.000000004 나옴 그래서 BigDecimal로 풀었는데 왜
+	 * 런타임에러?
+	 */
 
 	private static final Scanner sc = new Scanner(System.in);
 
@@ -10,26 +18,28 @@ public class T04320___PerfectSquareNumber {
 			int x = sc.nextInt();
 			if (x == 0) return;
 
-			findP(x);
+			System.out.println(findP(x));
 		}
 	}
 
-	private void findP(int x) {
-		double absx = Math.abs(x);
-		double logx = Math.log(absx);
-
-		for (int b = 2; b <= Math.sqrt(absx); b++) {
-			double logb = Math.log(b);
-			double p = logx / logb;
-			if (x == Math.pow(b, p)) {
-				if (p % 2 == 1 || x > 0) {
-					System.out.println((int) p);
-					return;
-				}
+	private int findP(int x) {
+		if (x > 0) {
+			BigDecimal logx = new BigDecimal(Double.toString(Math.log(x)));
+			for (int b = 2; b <= Math.sqrt(x); b++) {
+				BigDecimal logb = new BigDecimal(Double.toString(Math.log(b)));
+				BigDecimal p = logx.divide(logb, 5, RoundingMode.HALF_UP);
+				if (p.doubleValue() == p.intValue()) return p.intValue();
+			}
+		} else {
+			x *= -1;
+			BigDecimal logx = BigDecimal.valueOf(Math.log(x));
+			for (int b = 2; b <= Math.sqrt(x); b++) {
+				BigDecimal logb = new BigDecimal(Double.toString(Math.log(b)));
+				BigDecimal p = logx.divide(logb, 5, RoundingMode.HALF_UP);
+				if (p.doubleValue() == p.intValue() && p.intValue() % 2 != 0) return p.intValue();
 			}
 		}
-
-		System.out.println(1);
+		return 1;
 	}
 
 	public static void main(String[] args) {
