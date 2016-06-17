@@ -1,21 +1,23 @@
-package baekjoon.todo;
-
+package baekjoon.solve;
 import java.util.Scanner;
 
-public class T11134___CookieLover {
+public class P11312___TrianglePattern {
 
 	private static final Scanner sc = new Scanner(System.in);
 
 	private void solve() {
 		int testcase = sc.nextInt();
+
 		for (int t = 0; t < testcase; t++) {
-			int n = sc.nextInt();
-			int m = sc.nextInt();
-			System.out.println(n / m + n % m);
+			int a = sc.nextInt();
+			int b = sc.nextInt();
+
+			long n = a / b;
+			System.out.println(n * n);
 		}
 	}
 
 	public static void main(String[] args) {
-		new T11134___CookieLover().solve();
+		new P11312___TrianglePattern().solve();
 	}
 }

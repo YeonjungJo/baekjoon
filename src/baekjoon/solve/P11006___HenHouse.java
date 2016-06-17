@@ -1,8 +1,7 @@
-package baekjoon.todo;
-
+package baekjoon.solve;
 import java.util.Scanner;
 
-public class T11134___CookieLover {
+public class P11006___HenHouse {
 
 	private static final Scanner sc = new Scanner(System.in);
 
@@ -11,11 +10,12 @@ public class T11134___CookieLover {
 		for (int t = 0; t < testcase; t++) {
 			int n = sc.nextInt();
 			int m = sc.nextInt();
-			System.out.println(n / m + n % m);
+
+			System.out.printf("%d %d\n", 2 * m - n, m - 2 * m + n);
 		}
 	}
 
 	public static void main(String[] args) {
-		new T11134___CookieLover().solve();
+		new P11006___HenHouse().solve();
 	}
 }
