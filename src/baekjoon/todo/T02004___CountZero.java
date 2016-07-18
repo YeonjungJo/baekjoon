@@ -9,7 +9,7 @@ public class T02004___CountZero {
 		int n = sc.nextInt();
 		int m = sc.nextInt();
 
-		m = Integer.min(m, n - m);
+		m = m < n-m ? n-m : m;
 
 		long two = 0;
 		long five = 0;
@@ -23,7 +23,7 @@ public class T02004___CountZero {
 			two -= get(i, 2);
 			five -= get(i, 5);
 		}
-		System.out.println(Long.min(two, five));
+		System.out.println(two > five ? five : two);
 	}
 
 	private int get(int n, int k) {
