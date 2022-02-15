@@ -1,4 +1,5 @@
 package baekjoon.solve;
+
 import java.util.Scanner;
 
 public class P01932___NumberedTriangle {
@@ -7,25 +8,24 @@ public class P01932___NumberedTriangle {
 
 	private void solve() {
 		int n = sc.nextInt();
-		int size = (n * n + n) / 2;
-		int[] triangle = new int[size];
-		for (int i = 0; i < size; i++) {
-			triangle[i] = sc.nextInt();
+		int[][] a = new int[n][n];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j <= i; j++) {
+				a[i][j] = sc.nextInt();
+			}
 		}
 
-		int[] d = new int[size];
-		search(triangle, d, size, 0, 1);
-		System.out.println(d[0]);
-	}
+		for (int x = n - 1; x > 0; x--) {
+			for (int y = 0; y < x; y++) {
+				if (a[x][y] > a[x][y + 1]) {
+					a[x - 1][y] += a[x][y];
+				} else {
+					a[x - 1][y] += a[x][y + 1];
+				}
+			}
+		}
 
-	private int search(int[] triangle, int[] d, int size, int i, int h) {
-		if (i + h >= size) return triangle[i];
-		if (d[i] != 0) return d[i];
-		return d[i] = triangle[i] + max(search(triangle, d, size, i + h, h + 1), search(triangle, d, size, i + h + 1, h + 1));
-	}
-
-	private int max(int i, int j) {
-		return i > j ? i : j;
+		System.out.println(a[0][0]);
 	}
 
 	public static void main(String[] args) {
