@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
-public class P18111__Minecraft {
+public class T18111___Minecraft {
 
     private static final Scanner sc = new Scanner(System.in);
 
@@ -62,6 +62,6 @@ public class P18111__Minecraft {
     }
 
     public static void main(String[] args) {
-        new P18111__Minecraft().solve();
+        new T18111___Minecraft().solve();
     }
 }
