@@ -1,3 +1,5 @@
+package baekjoon.solve;
+
 import java.util.Scanner;
 
 public class P02671___Submarine {
