@@ -1,35 +1,50 @@
 package baekjoon.solve;
-import java.util.Arrays;
-import java.util.Scanner;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class P11652___Card {
 
-	private static final Scanner sc = new Scanner(System.in);
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-	private void solve() {
-		int n = sc.nextInt();
-		long[] a = new long[n];
-		for (int i = 0; i < n; i++) {
-			a[i] = sc.nextLong();
-		}
-		Arrays.sort(a);
+    private void solve() throws IOException {
+        int n = Integer.parseInt(br.readLine());
+        List<Long> inputs = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            inputs.add(Long.parseLong(br.readLine()));
+        }
 
-		long maxValue = a[0];
-		int max = 0;
-		int tmp = 1;
-		for (int i = 1; i < n; i++) {
-			if (a[i - 1] == a[i]) tmp++;
-			else tmp = 1;
-			if (max < tmp) {
-				max = tmp;
-				maxValue = a[i];
-			}
-		}
+        Map<Long, Long> counts = inputs.stream()
+                .sorted()
+                .collect(Collectors.groupingBy(
+                        Function.identity(),
+                        Collectors.counting()
+                ));
 
-		System.out.println(maxValue);
-	}
+        Long maxValue = counts.values().stream()
+                .max(Comparator.naturalOrder())
+                .orElse(Long.MIN_VALUE);
 
-	public static void main(String[] args) {
-		new P11652___Card().solve();
-	}
+        Long x = counts.entrySet()
+                .stream()
+                .filter(it -> it.getValue().equals(maxValue))
+                .map(Entry::getKey)
+                .sorted()
+                .findFirst()
+                .orElse(0L);
+
+        System.out.println(x);
+    }
+
+    public static void main(String[] args) throws IOException {
+        new P11652___Card().solve();
+    }
 }

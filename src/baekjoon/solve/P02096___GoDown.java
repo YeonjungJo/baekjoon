@@ -1,53 +1,51 @@
 package baekjoon.solve;
-import java.util.Scanner;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 public class P02096___GoDown {
 
-	private static final Scanner sc = new Scanner(System.in);
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-	private void solve() {
-		int n = sc.nextInt();
-		int[][] game = new int[n][3];
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < 3; j++) {
-				game[i][j] = sc.nextInt();
-			}
-		}
+    private void solve() throws IOException {
+        int n = Integer.parseInt(br.readLine());
+        int[][] points = new int[n][3];
+        for (int i = 0; i < n; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < 3; j++) {
+                points[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
 
-		int[][] d_max = new int[n][3];
-		int[][] d_min = new int[n][3];
+        int[][] max = new int[n][3];
+        max[0][0] = points[0][0];
+        max[0][1] = points[0][1];
+        max[0][2] = points[0][2];
+        int[][] min = new int[n][3];
+        min[0][0] = points[0][0];
+        min[0][1] = points[0][1];
+        min[0][2] = points[0][2];
 
-		for (int i = 0; i < 3; i++) {
-			findMax(game, d_max, n, 0, i);
-			findMin(game, d_min, n, 0, i);
-		}
-		System.out.println(max(d_max[0][0], d_max[0][1], d_max[0][2]) + " " + min(d_min[0][0], d_min[0][1], d_min[0][2]));
-	}
+        for (int i = 1; i < n; i++) {
+            max[i][0] = max(max[i - 1][0], max[i - 1][1]) + points[i][0];
+            max[i][1] = max(max(max[i - 1][0], max[i - 1][1]), max[i - 1][2]) + points[i][1];
+            max[i][2] = max(max[i - 1][1], max[i - 1][2]) + points[i][2];
+            min[i][0] = min(min[i - 1][0], min[i - 1][1]) + points[i][0];
+            min[i][1] = min(min(min[i - 1][0], min[i - 1][1]), min[i - 1][2]) + points[i][1];
+            min[i][2] = min(min[i - 1][1], min[i - 1][2]) + points[i][2];
+        }
 
-	private int findMin(int[][] game, int[][] d, int n, int i, int j) {
-		if (i < 0 || j < 0 || j >= 3) return Integer.MAX_VALUE;
-		if (i >= n) return 0;
-		if (d[i][j] != 0) return d[i][j];
-		return d[i][j] = game[i][j]
-				+ min(findMin(game, d, n, i + 1, j - 1), findMin(game, d, n, i + 1, j), findMin(game, d, n, i + 1, j + 1));
-	}
+        System.out.println(
+                max(max(max[n - 1][0], max[n - 1][1]), max[n - 1][2]) + " " + min(min(min[n - 1][0], min[n - 1][1]), min[n - 1][2])
+        );
+    }
 
-	private int min(int a, int b, int c) {
-		return a < b ? a < c ? a : c : b < c ? b : c;
-	}
-
-	private int findMax(int[][] game, int[][] d, int n, int i, int j) {
-		if (i < 0 || j < 0 || i >= n || j >= 3) return 0;
-		if (d[i][j] != 0) return d[i][j];
-		return d[i][j] = game[i][j]
-				+ max(findMax(game, d, n, i + 1, j - 1), findMax(game, d, n, i + 1, j), findMax(game, d, n, i + 1, j + 1));
-	}
-
-	private int max(int a, int b, int c) {
-		return a > b ? a > c ? a : c : b > c ? b : c;
-	}
-
-	public static void main(String[] args) {
-		new P02096___GoDown().solve();
-	}
+    public static void main(String[] args) throws IOException {
+        new P02096___GoDown().solve();
+    }
 }

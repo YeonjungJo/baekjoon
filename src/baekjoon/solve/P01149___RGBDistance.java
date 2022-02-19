@@ -1,46 +1,46 @@
 package baekjoon.solve;
-import java.util.Scanner;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+import static java.lang.Math.min;
 
 public class P01149___RGBDistance {
 
-	private static final Scanner sc = new Scanner(System.in);
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 	private static final int R = 0;
 	private static final int G = 1;
 	private static final int B = 2;
 
-	private void solve() {
-		int n = sc.nextInt();
+	private void solve() throws IOException {
+		int n = Integer.parseInt(br.readLine());
 		int[][] rgb = new int[n][3];
 		for (int i = 0; i < n; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
 			for (int j = 0; j < 3; j++) {
-				rgb[i][j] = sc.nextInt();
+				rgb[i][j] = Integer.parseInt(st.nextToken());
 			}
 		}
 
 		int[][] d = new int[n][3];
-		int min = Integer.MAX_VALUE;
 
 		for (int i = 0; i < 3; i++) {
-			int tmp = getRGB(rgb, d, 0, i);
-			min = tmp > min ? min : tmp;
+			d[0][i] = rgb[0][i];
 		}
-		System.out.println(min);
+
+		for (int i = 1; i < n; i++) {
+			d[i][R] = min(d[i - 1][G], d[i - 1][B]) + rgb[i][R];
+			d[i][G] = min(d[i - 1][R], d[i - 1][B]) + rgb[i][G];
+			d[i][B] = min(d[i - 1][R], d[i - 1][G]) + rgb[i][B];
+		}
+
+		System.out.println(min(min(d[n - 1][R], d[n - 1][G]), d[n - 1][B]));
 	}
 
-	private int getRGB(int[][] rgb, int[][] d, int i, int color) {
-		if (i == d.length - 1) return rgb[i][color];
-		if (color == R) return d[i][R] = rgb[i][R] + min(getRGB(rgb, d, i + 1, G), getRGB(rgb, d, i + 1, B));
-		if (color == G) return d[i][G] = rgb[i][G] + min(getRGB(rgb, d, i + 1, R), getRGB(rgb, d, i + 1, B));
-		if (color == B) return d[i][B] = rgb[i][B] + min(getRGB(rgb, d, i + 1, R), getRGB(rgb, d, i + 1, G));
-		return 0;
-	}
-
-	private int min(int i, int j) {
-		return i > j ? j : i;
-	}
-
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		new P01149___RGBDistance().solve();
 	}
 }

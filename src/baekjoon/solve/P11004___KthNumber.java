@@ -2,49 +2,31 @@ package baekjoon.solve;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class P11004___KthNumber {
 
-	private void solve() {
-		int n = sc.nextInt();
-		int k = sc.nextInt() - 1;
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	StringTokenizer st;
 
-		int[] a = new int[n];
+	private void solve() throws IOException {
+		st = new StringTokenizer(br.readLine());
+		int n = Integer.parseInt(st.nextToken());
+		int k = Integer.parseInt(st.nextToken()) - 1;
+
+		List<Integer> a = new LinkedList<>();
+		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < n; i++) {
-			a[i] = sc.nextInt();
+			a.add(Integer.parseInt(st.nextToken()));
 		}
-		Arrays.sort(a);
-		System.out.println(a[k]);
+		Collections.sort(a);
+		System.out.println(a.get(k));
 	}
 
-	public static void main(String[] args) {
-		sc.init();
+	public static void main(String[] args) throws IOException {
 		new P11004___KthNumber().solve();
-	}
-
-	static class sc {
-		private static BufferedReader br;
-		private static StringTokenizer st;
-
-		static void init() {
-			br = new BufferedReader(new InputStreamReader(System.in));
-			st = new StringTokenizer("");
-		}
-
-		static String next() {
-			while (!st.hasMoreTokens()) {
-				try {
-					st = new StringTokenizer(br.readLine());
-				} catch (IOException e) {}
-			}
-
-			return st.nextToken();
-		}
-
-		static int nextInt() {
-			return Integer.parseInt(next());
-		}
 	}
 }
