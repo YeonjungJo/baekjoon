@@ -1,48 +1,69 @@
 package baekjoon.solve;
-import java.util.Arrays;
-import java.util.Scanner;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class P01485___Square {
 
-	private static final Scanner sc = new Scanner(System.in);
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-	private void solve() {
-		int testcase = sc.nextInt();
-		for (int t = 0; t < testcase; t++) {
-			Point[] p = new Point[4];
-			for (int i = 0; i < 4; i++) {
-				p[i] = new Point(sc.nextInt(), sc.nextInt());
-			}
+    private void solve() throws IOException {
+        int t = Integer.parseInt(br.readLine());
 
-			double[] l = new double[3];
-			for (int i = 1; i <= 3; i++) {
-				l[i - 1] = getLenth(p[0], p[i]);
-			}
+        for (int n = 0; n < t; n++) {
+            Point[] points = new Point[4];
+            for (int i = 0; i < 4; i++) {
+                StringTokenizer st = new StringTokenizer(br.readLine());
+                points[i] = new Point(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+            }
 
-			Arrays.sort(l);
-			if (l[0] == l[1] && 2 * l[0] == l[2]) {
-				System.out.println(1);
-			} else {
-				System.out.println(0);
-			}
-		}
-	}
+            double d1 = getLengthSquare(points[0], points[1]);
+            double d2 = getLengthSquare(points[0], points[2]);
+            double d3 = getLengthSquare(points[0], points[3]);
+            if (d1 == d2 && d1 == d3) {
+                System.out.println(0);
+                continue;
+            }
+            if (d1 == d2 && d1 * 2 == d3) {
+                if (getLengthSquare(points[1], points[3]) == getLengthSquare(points[2], points[3])) {
+                    System.out.println(1);
+                    continue;
+                }
+            }
+            if (d2 == d3 && d2 * 2 == d1) {
+                if (getLengthSquare(points[1], points[2]) == getLengthSquare(points[1], points[3])) {
+                    System.out.println(1);
+                    continue;
+                }
+            }
+            if (d1 == d3 && d1 * 2 == d2) {
+                if (getLengthSquare(points[1], points[2]) == getLengthSquare(points[2], points[3])) {
+                    System.out.println(1);
+                    continue;
+                }
+            }
+            System.out.println(0);
+        }
+    }
 
-	private double getLenth(Point a, Point b) {
-		return Math.pow(Math.abs(a.x - b.x), 2) + Math.pow(Math.abs(a.y - b.y), 2);
-	}
+    private double getLengthSquare(Point a, Point b) {
+        return Math.pow(Math.abs(a.x - b.x), 2) + Math.pow(Math.abs(a.y - b.y), 2);
+    }
 
-	private class Point {
-		int x;
-		int y;
+    private class Point {
+        int x;
+        int y;
 
-		public Point(int x, int y) {
-			this.x = x;
-			this.y = y;
-		}
-	}
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
 
-	public static void main(String[] args) {
-		new P01485___Square().solve();
-	}
+
+    public static void main(String[] args) throws IOException {
+        new P01485___Square().solve();
+    }
 }

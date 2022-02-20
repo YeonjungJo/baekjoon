@@ -1,46 +1,54 @@
 package baekjoon.solve;
-import java.util.Scanner;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+import java.util.StringTokenizer;
 
 public class P06322___2SidesOfTriangle {
 
-	private static final Scanner sc = new Scanner(System.in);
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-	private void solve() {
-		for (int k = 1;; k++) {
-			int[] triangle = new int[3];
+    private void solve() throws IOException {
+        StringTokenizer st;
+        for (int i = 1; ; i++) {
+            st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            int c = Integer.parseInt(st.nextToken());
 
-			int t = -1;
-			for (int i = 0; i < 3; i++) {
-				triangle[i] = sc.nextInt();
-				if (triangle[i] == -1) t = i;
-			}
+            if (a == 0 && b == 0 && c == 0) {
+                return;
+            }
 
-			if (t == -1) return;
+            DecimalFormat decimalFormat = new DecimalFormat("0.000");
 
-			System.out.println("Triangle #" + k);
+            System.out.println("Triangle #" + i);
+            if (a == -1) {
+                if (c <= b) {
+                    System.out.println("Impossible.\n");
+                    continue;
+                }
+                double result = Math.sqrt(c * c - b * b);
+                System.out.println("a = " + decimalFormat.format(result));
+            } else if (b == -1) {
+                if (c <= a) {
+                    System.out.println("Impossible.\n");
+                    continue;
+                }
+                double result = Math.sqrt(c * c - a * a);
+                System.out.println("b = " + decimalFormat.format(result));
+            } else {
+                double result = Math.sqrt(a * a + b * b);
+                System.out.println("c = " + decimalFormat.format(result));
+            }
 
-			if (t == 0) getAngle('a', triangle[1], triangle[2]);
-			if (t == 1) getAngle('b', triangle[0], triangle[2]);
-			if (t == 2) getAngle('c', triangle[0], triangle[1]);
-			
-			System.out.println();
-		}
-	}
+            System.out.println();
+        }
+    }
 
-	private void getAngle(char c, int i, int j) {
-		double result;
-
-		if (c == 'c') {
-			result = Math.sqrt(i * i + j * j);
-		} else {
-			result = Math.sqrt(j * j - i * i);
-		}
-
-		if (Double.isNaN(result)) System.out.println("Impossible.");
-		else System.out.printf(c + " = %.3f\n", result);
-	}
-
-	public static void main(String[] args) {
-		new P06322___2SidesOfTriangle().solve();
-	}
+    public static void main(String[] args) throws IOException {
+        new P06322___2SidesOfTriangle().solve();
+    }
 }

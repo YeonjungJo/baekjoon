@@ -1,52 +1,48 @@
 package baekjoon.solve;
-import java.util.Scanner;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class P03063___Board {
 
-	private static final Scanner sc = new Scanner(System.in);
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-	private void solve() {
-		int testcase = sc.nextInt();
-		for (int t = 0; t < testcase; t++) {
-			int x1 = sc.nextInt();
-			int y1 = sc.nextInt();
-			int x2 = sc.nextInt();
-			int y2 = sc.nextInt();
-			int x3 = sc.nextInt();
-			int y3 = sc.nextInt();
-			int x4 = sc.nextInt();
-			int y4 = sc.nextInt();
+    private void solve() throws IOException {
+        int n = Integer.parseInt(br.readLine());
 
-			int area = (x2 - x1) * (y2 - y1);
+        for (int i = 0; i < n; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int x1 = Integer.parseInt(st.nextToken()); // 왼쪽아래
+            int y1 = Integer.parseInt(st.nextToken());
+            int x2 = Integer.parseInt(st.nextToken()); // 오른쪽 위
+            int y2 = Integer.parseInt(st.nextToken());
 
-			if (x4 < x1 || x3 > x2 || y4 < y1 || y3 > y2) {
-				System.out.println(area);
-				break;
-			}
-			int ox = 0;
-			int oy = 0;
-			if (x1 >= x3) {
-				ox = min(x2, x4) - x1;
-			}
-			if (x1 < x3) {
-				ox = min(x2, x4) - x3;
-			}
-			if (y1 >= y3) {
-				oy = min(y2, y4) - y1;
-			}
-			if (y1 < y3) {
-				oy = min(y2, y4) - y3;
-			}
+            int x3 = Integer.parseInt(st.nextToken());
+            int y3 = Integer.parseInt(st.nextToken());
+            int x4 = Integer.parseInt(st.nextToken());
+            int y4 = Integer.parseInt(st.nextToken());
 
-			System.out.println(area - (ox * oy));
-		}
-	}
+            int s = (x2 - x1) * (y2 - y1);
+            int x;
+            int y;
+            if (x1 >= x3) {
+                x = (Math.min(x4, x2)) - x1;
+            } else {
+                x = (Math.min(x4, x2)) - x3;
+            }
+            if (y1 >= y3) {
+                y = (Math.min(y4, y2)) - y1;
+            } else {
+                y = (Math.min(y4, y2)) - y3;
+            }
 
-	private int min(int x, int y) {
-		return x < y ? x : y;
-	}
+            System.out.println(s - (x < 0 || y < 0 ? 0 : x * y));
+        }
+    }
 
-	public static void main(String[] args) {
-		new P03063___Board().solve();
-	}
+    public static void main(String[] args) throws IOException {
+        new P03063___Board().solve();
+    }
 }
