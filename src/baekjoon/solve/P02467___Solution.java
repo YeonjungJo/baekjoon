@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class P02470___Solution {
+public class P02467___Solution {
 
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -58,6 +58,6 @@ public class P02470___Solution {
     }
 
     public static void main(String[] args) throws IOException {
-        new P02470___Solution().solve();
+        new P02467___Solution().solve();
     }
 }
