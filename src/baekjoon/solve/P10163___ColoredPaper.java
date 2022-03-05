@@ -1,40 +1,45 @@
 package baekjoon.solve;
-import java.util.Scanner;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class P10163___ColoredPaper {
 
-	private static final Scanner sc = new Scanner(System.in);
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer st;
 
-	private static int[][] bg = new int[101][101];
+    private void solve() throws IOException {
+        int n = Integer.parseInt(br.readLine());
 
-	private void solve() {
-		int n = sc.nextInt();
-		int[] result = new int[n + 1];
+        int[][] a = new int[1001][1001];
+        int[] d = new int[n + 1];
 
-		for (int t = 1; t <= n; t++) {
-			put(t, sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt());
-		}
+        for (int i = 1; i <= n; i++) {
+            st = new StringTokenizer(br.readLine());
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
+            int w = Integer.parseInt(st.nextToken());
+            int h = Integer.parseInt(st.nextToken());
 
-		for (int i = 0; i < 101; i++) {
-			for (int j = 0; j < 101; j++) {
-				result[bg[i][j]]++;
-			}
-		}
+            for (int j = x; j < x + w; j++) {
+                for (int k = y; k < y + h; k++) {
+                    d[a[j][k]]--;
+                    a[j][k] = i;
+                    d[i]++;
+                }
+            }
+        }
 
-		for (int i = 1; i < result.length; i++) {
-			System.out.println(result[i]);
-		}
-	}
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 1; i <= n; i++) {
+            stringBuilder.append(d[i]).append("\n");
+        }
+        System.out.print(stringBuilder);
+    }
 
-	private void put(int n, int leftX, int leftY, int w, int h) {
-		for (int i = 0; i < h; i++) {
-			for (int j = 0; j < w; j++) {
-				bg[leftY + i][leftX + j] = n;
-			}
-		}
-	}
-
-	public static void main(String[] args) {
-		new P10163___ColoredPaper().solve();
-	}
+    public static void main(String[] args) throws IOException {
+        new P10163___ColoredPaper().solve();
+    }
 }
